@@ -5,14 +5,26 @@
     "scheme": "uaedresses",
     "version": "1.0.0",
     "orientation": "portrait",
-    "updates": { "fallbackToCacheTimeout": 0 },
-    "assetBundlePatterns": ["**/*"],
-    "ios": { "supportsTablet": false },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": false
+    },
     "android": {
       "package": "ae.elegance.app",
       "versionCode": 1,
       "permissions": []
     },
-    "plugins": []
+    "plugins": [],
+    "extra": {
+      "eas": {
+        "projectId": "a6840e26-87cf-4a3a-a91f-43b2380018ae"
+      }
+    },
+    "owner": "hanifyousufzai"
   }
 }
