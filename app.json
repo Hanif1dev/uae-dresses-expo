@@ -20,7 +20,22 @@
         "backgroundColor": "#ffffff"
       }
     },
-    "plugins": [],
+    "plugins": [
+      "expo-build-properties",
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "abiFilters": [
+              "armeabi-v7a",
+              "arm64-v8a"
+            ],
+            "enableProguardInReleaseBuilds": false,
+            "enableShrinkResourcesInReleaseBuilds": false
+          }
+        }
+      ]
+    ],
     "extra": {
       "eas": {
         "projectId": "a6840e26-87cf-4a3a-a91f-43b2380018ae"
