@@ -16,7 +16,6 @@
     },
     "android": {
       "package": "ae.elegance.app",
-      "permissions": [],
       "splash": {
         "backgroundColor": "#ffffff"
       }
@@ -28,7 +27,9 @@
       }
     },
     "splash": {
-      "backgroundColor": "#ffffff"
-    }
+      "backgroundColor": "#ffffff",
+      "resizeMode": "contain"
+    },
+    "jsEngine": "jsc"
   }
 }
