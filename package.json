@@ -1,4 +1,3 @@
-cat > package.json <<'JSON'
 {
   "name": "uae-dresses-expo",
   "version": "1.0.0",
@@ -18,4 +17,3 @@ cat > package.json <<'JSON'
     "babel-preset-expo": "~11.0.0"
   }
 }
-JSON
