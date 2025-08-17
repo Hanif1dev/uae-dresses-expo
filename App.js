@@ -1,27 +1,26 @@
+cat > App.js <<'JS'
 import React, { useMemo, useState } from 'react';
 import { View, Text, TextInput, Pressable, Image, ScrollView } from 'react-native';
 
 const PRODUCTS = [
-  { id:'1', name_ar:'عباية كلاسيكية', name_en:'Classic Abaya', price:349, fabric:'unstretch', sizes:['S','M','L','XL','2XL'], img:'https://placehold.co/600x800?text=Abaya' },
-  { id:'2', name_ar:'فستان عصري', name_en:'Modern Dress', price:429, fabric:'stretch', sizes:['S','M','L','XL'], img:'https://placehold.co/600x800?text=Modern' },
-  { id:'3', name_ar:'فستان سهرة', name_en:'Evening Dress', price:999, fabric:'stretch', sizes:['S','M','L'], img:'https://placehold.co/600x800?text=Evening' }
+  { id:'1', name_ar:'عباية كلاسيكية', name_en:'Classic Abaya', price:349, sizes:['S','M','L','XL','2XL'], img:'https://placehold.co/600x800?text=Abaya' },
+  { id:'2', name_ar:'فستان عصري', name_en:'Modern Dress', price:429, sizes:['S','M','L','XL'], img:'https://placehold.co/600x800?text=Modern' },
+  { id:'3', name_ar:'فستان سهرة', name_en:'Evening Dress', price:999, sizes:['S','M','L'], img:'https://placehold.co/600x800?text=Evening' }
 ];
 
 export default function App(){
-  const [lang, setLang] = useState<'ar'|'en'>('ar');
+  const [lang, setLang] = useState('ar');
   const [q, setQ] = useState('');
-  const [selected, setSelected] = useState<any>(null);
+  const [selected, setSelected] = useState(null);
   const [size, setSize] = useState('M');
-  const [cart, setCart] = useState<any[]>([]);
-  const t = (ar:string,en:string)=> lang==='ar'?ar:en;
-
+  const [cart, setCart] = useState([]);
+  const t = (ar,en)=> lang==='ar'?ar:en;
   const filtered = useMemo(()=> PRODUCTS.filter(p => (lang==='ar'?p.name_ar:p.name_en).includes(q)), [q,lang]);
   const addToCart = ()=>{ if(!selected) return; setCart(c=>[...c,{ id:selected.id, name: lang==='ar'?selected.name_ar:selected.name_en, price:selected.price, size, img:selected.img, qty:1 }]); };
   const subtotal = cart.reduce((s,i)=>s+i.price*i.qty,0);
 
   return (
     <ScrollView style={{ backgroundColor:'#fff' }} contentContainerStyle={{ padding:16 }}>
-      {/* Header */}
       <View style={{ flexDirection:'row', alignItems:'center' }}>
         <Text style={{ fontSize:20, fontWeight:'800' }}>{t('متجر الأناقة','Elegance Boutique')}</Text>
         <View style={{ flex:1 }} />
@@ -29,12 +28,10 @@ export default function App(){
         <Pressable onPress={()=>setLang('en')} style={{ marginLeft:6, paddingHorizontal:8, paddingVertical:6, borderRadius:10, backgroundColor: lang==='en'?'#111':'#eee' }}><Text style={{ color: lang==='en'?'#fff':'#111' }}>EN</Text></Pressable>
       </View>
 
-      {/* Search */}
       <View style={{ flexDirection:'row', gap:8, marginTop:12 }}>
         <TextInput placeholder={t('ابحثي عن فستان...','Search for a dress...')} value={q} onChangeText={setQ} style={{ flex:1, borderWidth:1, borderColor:'#ddd', padding:10, borderRadius:12 }} />
       </View>
 
-      {/* Grid */}
       <View style={{ flexDirection:'row', flexWrap:'wrap', gap:12, marginTop:12 }}>
         {filtered.map(p => (
           <Pressable key={p.id} onPress={()=>{ setSelected(p); setSize(p.sizes[0]); }} style={{ width:'48%', backgroundColor:'#fafafa', borderRadius:16, overflow:'hidden', borderWidth:1, borderColor:'#eee' }}>
@@ -47,14 +44,13 @@ export default function App(){
         ))}
       </View>
 
-      {/* Product modal (inline) */}
       {selected && (
         <View style={{ marginTop:16, padding:12, borderWidth:1, borderColor:'#eee', borderRadius:16 }}>
           <Image source={{ uri:selected.img }} style={{ width:'100%', aspectRatio:3/4, borderRadius:12 }} />
           <Text style={{ fontSize:18, fontWeight:'800', marginTop:8 }}>{lang==='ar'?selected.name_ar:selected.name_en}</Text>
           <Text style={{ opacity:0.7 }}>{selected.price} {t('درهم','AED')}</Text>
           <View style={{ flexDirection:'row', flexWrap:'wrap', gap:8, marginTop:8 }}>
-            {selected.sizes.map((s:string)=> (
+            {selected.sizes.map((s)=> (
               <Pressable key={s} onPress={()=>setSize(s)} style={{ paddingHorizontal:12, paddingVertical:8, borderRadius:12, borderWidth:1, borderColor:'#ccc', backgroundColor: size===s?'#111':'#fff' }}>
                 <Text style={{ color:size===s?'#fff':'#111' }}>{s}</Text>
               </Pressable>
@@ -66,7 +62,6 @@ export default function App(){
         </View>
       )}
 
-      {/* Cart */}
       <View style={{ marginTop:24 }}>
         <Text style={{ fontSize:16, fontWeight:'800' }}>{t('الحقيبة','Bag')}</Text>
         {cart.map((it, idx)=> (
@@ -84,3 +79,4 @@ export default function App(){
     </ScrollView>
   );
 }
+JS
