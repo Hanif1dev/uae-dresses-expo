@@ -5,11 +5,30 @@
     "scheme": "uaedresses",
     "version": "1.0.0",
     "orientation": "portrait",
-    "updates": { "fallbackToCacheTimeout": 0 },
-    "assetBundlePatterns": ["**/*"],
-    "ios": { "supportsTablet": false },
-    "android": { "package": "ae.elegance.app", "permissions": [] },
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": false
+    },
+    "android": {
+      "package": "ae.elegance.app",
+      "permissions": [],
+      "splash": {
+        "backgroundColor": "#ffffff"
+      }
+    },
     "plugins": [],
-    "extra": { "eas": { "projectId": "a6840e26-87cf-4a3a-a91f-43b2380018ae" } }
+    "extra": {
+      "eas": {
+        "projectId": "a6840e26-87cf-4a3a-a91f-43b2380018ae"
+      }
+    },
+    "splash": {
+      "backgroundColor": "#ffffff"
+    }
   }
 }
